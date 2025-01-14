@@ -3,7 +3,7 @@ package me.dylee.springbootdeveloper;
 import jakarta.persistence.*;
 import lombok.*;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자
 @AllArgsConstructor
 @Getter
 @Entity
@@ -15,4 +15,8 @@ public class Member {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    public void changeName(String name) {
+        this.name = name;
+    }
 }
