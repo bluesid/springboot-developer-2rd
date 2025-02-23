@@ -1,7 +1,7 @@
 package me.dylee.springbootdeveloper.service;
 
 import lombok.RequiredArgsConstructor;
-import me.dylee.springbootdeveloper.domain.Article;
+import me.dylee.springbootdeveloper.domain.User;
 import me.dylee.springbootdeveloper.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class UserDetailService implements UserDetailsService {
 
     // 사용자 이름(email)으로 사용자의 정보를 가져오는 메서드
     @Override
-    public Article.User loadUserByUsername(String email) {
+    public User loadUserByUsername(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException((email)));
     }

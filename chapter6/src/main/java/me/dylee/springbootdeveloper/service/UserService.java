@@ -1,7 +1,7 @@
 package me.dylee.springbootdeveloper.service;
 
 import lombok.RequiredArgsConstructor;
-import me.dylee.springbootdeveloper.domain.Article;
+import me.dylee.springbootdeveloper.domain.User;
 import me.dylee.springbootdeveloper.dto.AddUserRequest;
 import me.dylee.springbootdeveloper.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,10 +15,15 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Long save(AddUserRequest dto) {
-        return userRepository.save(Article.User.builder()
+        return userRepository.save(User.builder()
                 .email(dto.getEmail())
                 // 패스워드 암호화
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))
                 .build()).getId();
+    }
+
+    public User findById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Unexpected user"));
     }
 }
